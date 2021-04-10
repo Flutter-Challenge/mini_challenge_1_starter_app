@@ -22,3 +22,12 @@ class CustomWidgetThemes {
     );
   }
 }
+
+/// Handles dark and light mode checks for context
+extension BrightnessThemeExtension on BuildContext {
+  /// You are currently viewing in dark mode
+  bool get isDark => MediaQuery.of(this).platformBrightness == Brightness.dark;
+
+  /// You are currently viewing in light mode
+  bool get isLight => MediaQuery.of(this).platformBrightness == Brightness.light;
+}
