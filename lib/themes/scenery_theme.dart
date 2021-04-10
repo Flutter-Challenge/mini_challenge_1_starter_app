@@ -29,6 +29,8 @@ class SceneryThemeData {
     required this.petalFillColor,
     required this.petalStrokeColor,
     required this.stemStrokeColor,
+    required this.drawMoon,
+    required this.drawSun,
   });
 
   final Color skyFillColor;
@@ -40,4 +42,8 @@ class SceneryThemeData {
   final Color petalStrokeColor;
 
   final Color stemStrokeColor;
+
+  final bool drawSun;
+
+  final bool drawMoon;
 }

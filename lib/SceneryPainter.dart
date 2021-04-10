@@ -9,7 +9,6 @@ class SceneryPainter extends CustomPainter {
     required this.petalStrokeColor,
     required this.stemColor,
     required this.skyColor,
-    required this.groundColor,
     required this.midPointX,
     required this.textHeight,
     required this.drawSun,
@@ -20,7 +19,6 @@ class SceneryPainter extends CustomPainter {
   final Color petalStrokeColor;
   final Color stemColor;
   final Color skyColor;
-  final Color groundColor;
   final double midPointX;
   final double textHeight;
   final bool drawSun;
@@ -41,7 +39,10 @@ class SceneryPainter extends CustomPainter {
     _canvasHeight = size.height - textHeight;
     final skyHeight = _canvasHeight * .66;
     _paint.color = skyColor;
-    canvas.drawRect(Rect.fromPoints(Offset.zero, Offset(size.width, skyHeight)), _paint);
+    canvas.drawRect(
+      Rect.fromPoints(Offset.zero, Offset(size.width, skyHeight)),
+      _paint,
+    );
 
     final _flower = _flowerPath(canvas);
     _drawFlower(

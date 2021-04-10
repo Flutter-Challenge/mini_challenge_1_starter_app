@@ -19,18 +19,17 @@ class _SceneryState extends State<Scenery> {
         children: [
           CustomPaint(
             foregroundPainter: SceneryPainter(
-              skyColor: CustomThemes.of(context).sceneryThemeData!.skyFillColor,
-              petalFillColor: CustomThemes.of(context).sceneryThemeData!.petalFillColor,
-              petalStrokeColor: CustomThemes.of(context).sceneryThemeData!.petalStrokeColor,
-              stemColor: CustomThemes.of(context).sceneryThemeData!.stemStrokeColor,
-              groundColor: CustomThemes.of(context).sceneryThemeData!.groundFillColor,
+              skyColor: CustomWidgetThemes.of(context).sceneryThemeData!.skyFillColor,
+              petalFillColor: CustomWidgetThemes.of(context).sceneryThemeData!.petalFillColor,
+              petalStrokeColor: CustomWidgetThemes.of(context).sceneryThemeData!.petalStrokeColor,
+              stemColor: CustomWidgetThemes.of(context).sceneryThemeData!.stemStrokeColor,
               midPointX: constraints.maxWidth / 2,
               textHeight: _textAreaHeight,
-              drawSun: _drawSun,
-              drawMoon: _drawMoon,
+              drawSun: CustomWidgetThemes.of(context).sceneryThemeData!.drawSun,
+              drawMoon: CustomWidgetThemes.of(context).sceneryThemeData!.drawMoon,
             ),
             child: Container(
-              color: CustomThemes.of(context).sceneryThemeData!.groundFillColor,
+              color: CustomWidgetThemes.of(context).sceneryThemeData!.groundFillColor,
             ),
           ),
           Positioned(
@@ -47,17 +46,14 @@ class _SceneryState extends State<Scenery> {
     );
   }
 
-  //todo(you) - Can you find a way to toggle these values with light mode and dark mode.
+  //todo(you) - Can you find a way to toggle this value with light mode and dark mode.
   final _textBackgroundColor = Colors.blueGrey.shade50;
-  final _drawMoon = true;
-  final _drawSun = true;
 }
 
 class SomeText extends StatelessWidget {
   const SomeText();
   @override
   Widget build(BuildContext context) {
-    //todo(you) - Required - Can you make this text more interesting with a custom AppTheme?
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
