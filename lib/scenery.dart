@@ -8,16 +8,8 @@ class Scenery extends StatefulWidget {
 }
 
 class _SceneryState extends State<Scenery> {
-  // Can you find a way to toggle these values with light mode and dark mode?
-  final _petalColor = Colors.pinkAccent.shade100;
-  final _petalStrokeColor = Colors.pink.shade50;
-  final _stemColor = Colors.green.shade400;
-  final _skyColor = Colors.lightBlueAccent;
-  final _groundColor = Colors.green.shade800;
-  final _drawMoon = true;
-  final _drawSun = true;
-
-  final _textAreaHeight = 250.0; // You can adjust this, if you like, but it should not toggle with light/dark mode.
+  // You can adjust this, if you like, but it should not toggle with light/dark mode.
+  final _textAreaHeight = 250.0;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +37,7 @@ class _SceneryState extends State<Scenery> {
             child: Container(
               height: _textAreaHeight,
               width: constraints.maxWidth,
-              color: Colors.blueGrey.shade50,
+              color: _textBackgroundColor,
               child: const SomeText(),
             ),
           ),
@@ -53,12 +45,24 @@ class _SceneryState extends State<Scenery> {
       ),
     );
   }
+
+  //todo(you) - Optional - Can you find a way to toggle these values with light mode and dark mode?
+  //hint: use InheritedTheme.
+  final _petalColor = Colors.pinkAccent.shade100;
+  final _petalStrokeColor = Colors.pink.shade50;
+  final _stemColor = Colors.green.shade400;
+  final _skyColor = Colors.lightBlueAccent;
+  final _groundColor = Colors.green.shade800;
+  final _textBackgroundColor = Colors.blueGrey.shade50;
+  final _drawMoon = true;
+  final _drawSun = true;
 }
 
 class SomeText extends StatelessWidget {
   const SomeText();
   @override
   Widget build(BuildContext context) {
+    //todo(you) - Required - Can you make this text more interesting with a custom AppTheme?
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
