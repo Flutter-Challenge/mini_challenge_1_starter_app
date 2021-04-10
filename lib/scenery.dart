@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'SceneryPainter.dart';
+import 'themes/custom_themes.dart';
 
 class Scenery extends StatefulWidget {
   @override
@@ -18,18 +19,18 @@ class _SceneryState extends State<Scenery> {
         children: [
           CustomPaint(
             foregroundPainter: SceneryPainter(
-              skyColor: _skyColor,
-              petalFillColor: _petalColor,
-              petalStrokeColor: _petalStrokeColor,
-              stemColor: _stemColor,
-              groundColor: _groundColor,
+              skyColor: CustomThemes.of(context).sceneryThemeData!.skyFillColor,
+              petalFillColor: CustomThemes.of(context).sceneryThemeData!.petalFillColor,
+              petalStrokeColor: CustomThemes.of(context).sceneryThemeData!.petalStrokeColor,
+              stemColor: CustomThemes.of(context).sceneryThemeData!.stemStrokeColor,
+              groundColor: CustomThemes.of(context).sceneryThemeData!.groundFillColor,
               midPointX: constraints.maxWidth / 2,
               textHeight: _textAreaHeight,
               drawSun: _drawSun,
               drawMoon: _drawMoon,
             ),
             child: Container(
-              color: _groundColor,
+              color: CustomThemes.of(context).sceneryThemeData!.groundFillColor,
             ),
           ),
           Positioned(
@@ -46,13 +47,7 @@ class _SceneryState extends State<Scenery> {
     );
   }
 
-  //todo(you) - Optional - Can you find a way to toggle these values with light mode and dark mode?
-  //hint: use InheritedTheme.
-  final _petalColor = Colors.pinkAccent.shade100;
-  final _petalStrokeColor = Colors.pink.shade50;
-  final _stemColor = Colors.green.shade400;
-  final _skyColor = Colors.lightBlueAccent;
-  final _groundColor = Colors.green.shade800;
+  //todo(you) - Can you find a way to toggle these values with light mode and dark mode.
   final _textBackgroundColor = Colors.blueGrey.shade50;
   final _drawMoon = true;
   final _drawSun = true;

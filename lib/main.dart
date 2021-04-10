@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Theming Mini Challenge',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        textTheme: TextTheme(), //todo(you) fill this TextTheme() in to make the text look nicer
       ),
-      home: MyHomePage(title: 'Theming Challenge Page'),
+      home: MyHomePage(title: 'Theming Challenge'),
     );
   }
 }
