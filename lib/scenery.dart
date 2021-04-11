@@ -50,6 +50,7 @@ class _SceneryState extends State<Scenery> {
                 child: Row(
                   children: <Widget>[
                     Expanded(
+                      //todo(you) Which textStyle is used for the RadioListTile title text? Can you put it in your theme?
                       child: RadioListTile<ThemeType>(
                         title: const Text('Light Theme'),
                         groupValue: myTheme.currentTheme,
