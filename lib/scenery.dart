@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'SceneryPainter.dart';
 import 'themes/custom_themes.dart';
+import 'themes/my_theme.dart';
 
 class Scenery extends StatefulWidget {
   @override
@@ -14,6 +16,7 @@ class _SceneryState extends State<Scenery> {
 
   @override
   Widget build(BuildContext context) {
+    final myTheme = Provider.of<MyTheme>(context, listen: false);
     return LayoutBuilder(
       builder: (context, constraints) => Stack(
         children: [
@@ -39,6 +42,39 @@ class _SceneryState extends State<Scenery> {
               width: constraints.maxWidth,
               color: _textBackgroundColor,
               child: const SomeText(),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                width: 200,
+                height: 200,
+                child: Column(
+                  children: <Widget>[
+                    RadioListTile<ThemeType>(
+                      title: const Text('Light Theme'),
+                      groupValue: myTheme.currentTheme,
+                      value: ThemeType.Light,
+                      onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Light),
+                    ),
+                    RadioListTile<ThemeType>(
+                      title: const Text('Dark Theme'),
+                      groupValue: myTheme.currentTheme,
+                      value: ThemeType.Dark,
+                      onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Dark),
+                    ),
+                    RadioListTile<ThemeType>(
+                      title: const Text('Pastel Theme'),
+                      groupValue: myTheme.currentTheme,
+                      value: ThemeType.Pastel,
+                      onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Pastel),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],

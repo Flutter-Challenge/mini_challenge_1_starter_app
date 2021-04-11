@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mini_challenge_1_theming/scenery.dart';
+import 'package:mini_challenge_1_theming/themes/my_theme.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider<MyTheme>(
+      create: (_) => MyTheme(),
+      child: LayoutBuilder(
+        builder: (context, constraints) => MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,9 +19,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Theming Mini Challenge',
-      theme: ThemeData(
+      theme: Provider.of<MyTheme>(context).currentThemeData,
+      /* ThemeData(
         textTheme: TextTheme(), //todo(you) fill this TextTheme() in to make the text look nicer
-      ),
+      ),*/
       home: MyHomePage(title: 'Theming Challenge'),
     );
   }
