@@ -23,16 +23,14 @@ class _SceneryState extends State<Scenery> {
           CustomPaint(
             foregroundPainter: SceneryPainter(
               skyColor: CustomWidgetThemes.of(context).sceneryThemeData!.skyFillColor,
-              petalFillColor: CustomWidgetThemes.of(context).sceneryThemeData!.petalFillColor,
-              petalStrokeColor: CustomWidgetThemes.of(context).sceneryThemeData!.petalStrokeColor,
-              stemColor: CustomWidgetThemes.of(context).sceneryThemeData!.stemStrokeColor,
-              midPointX: constraints.maxWidth / 2,
+              waterColor: CustomWidgetThemes.of(context).sceneryThemeData!.waterFillColor,
+              mountainColor: CustomWidgetThemes.of(context).sceneryThemeData!.mountainFillColor,
               textHeight: _textAreaHeight,
               drawSun: CustomWidgetThemes.of(context).sceneryThemeData!.drawSun,
               drawMoon: CustomWidgetThemes.of(context).sceneryThemeData!.drawMoon,
             ),
             child: Container(
-              color: CustomWidgetThemes.of(context).sceneryThemeData!.groundFillColor,
+              color: CustomWidgetThemes.of(context).sceneryThemeData!.mountainFillColor,
             ),
           ),
           Positioned(

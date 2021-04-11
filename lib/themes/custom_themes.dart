@@ -19,10 +19,8 @@ class CustomWidgetThemes {
       case ThemeType.Light:
         sceneryThemeData = SceneryThemeData(
           skyFillColor: Colors.lightBlueAccent.shade200,
-          groundFillColor: Colors.green.shade800,
-          petalFillColor: Colors.pinkAccent.shade100,
-          petalStrokeColor: Colors.pink.shade50,
-          stemStrokeColor: Colors.lightGreen.shade600,
+          mountainFillColor: Colors.green.shade800,
+          waterFillColor: Colors.pinkAccent.shade100,
           drawMoon: false,
           drawSun: true,
         );
@@ -30,10 +28,8 @@ class CustomWidgetThemes {
       case ThemeType.Dark:
         sceneryThemeData = SceneryThemeData(
           skyFillColor: Colors.blueGrey.shade800,
-          groundFillColor: Colors.green.shade800,
-          petalFillColor: Colors.pinkAccent.shade100,
-          petalStrokeColor: Colors.pink.shade50,
-          stemStrokeColor: Colors.lightGreen.shade600,
+          mountainFillColor: Colors.green.shade800,
+          waterFillColor: Colors.pinkAccent.shade100,
           drawMoon: true,
           drawSun: false,
         );
@@ -41,23 +37,12 @@ class CustomWidgetThemes {
       case ThemeType.Pastel:
         sceneryThemeData = SceneryThemeData(
           skyFillColor: Colors.lightBlueAccent.shade200,
-          groundFillColor: Colors.green.shade800,
-          petalFillColor: Colors.pinkAccent.shade100,
-          petalStrokeColor: Colors.pink.shade50,
-          stemStrokeColor: Colors.lightGreen.shade600,
+          mountainFillColor: Colors.green.shade800,
+          waterFillColor: Colors.pinkAccent.shade100,
           drawMoon: true,
           drawSun: true,
         );
         break;
     }
   }
-}
-
-/// Handles dark and light mode checks for context
-extension BrightnessThemeExtension on BuildContext {
-  /// You are currently viewing in dark mode
-  bool get isDark => MediaQuery.of(this).platformBrightness == Brightness.dark;
-
-  /// You are currently viewing in light mode
-  bool get isLight => MediaQuery.of(this).platformBrightness == Brightness.light;
 }

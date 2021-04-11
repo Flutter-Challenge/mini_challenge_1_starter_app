@@ -1,33 +1,25 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
 class SceneryPainter extends CustomPainter {
   SceneryPainter({
-    required this.petalFillColor,
-    required this.petalStrokeColor,
-    required this.stemColor,
+    required this.waterColor,
+    required this.mountainColor,
     required this.skyColor,
-    required this.midPointX,
     required this.textHeight,
     required this.drawSun,
     required this.drawMoon,
   });
 
-  final Color petalFillColor;
-  final Color petalStrokeColor;
-  final Color stemColor;
+  final Color waterColor;
+  final Color mountainColor;
   final Color skyColor;
-  final double midPointX;
   final double textHeight;
   final bool drawSun;
   final bool drawMoon;
 
   final _paint = Paint();
-  final _flowerInnerRadius = 7.0;
-  final _petalCtrlPtHeight = 100.0;
-  final _numPetals = 10;
   final _flowerCenterY = 170.0;
 
   Offset _center = Offset.zero;
@@ -35,20 +27,14 @@ class SceneryPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    _center = Offset(midPointX, _flowerCenterY);
+    _center = Offset(size.width / 2, _flowerCenterY);
     _canvasHeight = size.height - textHeight;
-    final skyHeight = _canvasHeight * .66;
-    _paint.color = skyColor;
-    canvas.drawRect(
-      Rect.fromPoints(Offset.zero, Offset(size.width, skyHeight)),
-      _paint,
-    );
 
-    final _flower = _flowerPath(canvas);
-    _drawFlower(
-      canvas: canvas,
-      flowerPath: _flower,
-    );
+    _drawSeaAndSky(canvas, size);
+    _drawMountains(canvas, size, true);
+    _drawMountains(canvas, size, false);
+    //_drawMountainReflection(canvas, size);
+
     if (drawSun) {
       _drawSun(canvas);
     }
@@ -57,125 +43,52 @@ class SceneryPainter extends CustomPainter {
     }
   }
 
-  Path _flowerPath(Canvas canvas) {
-    Path path = Path();
-    double theta = 0;
-    double innerWidthSweep = _innerSweep(_numPetals);
-    double outerWidthDelta = _outerWidthDelta(_numPetals);
+  void _drawSeaAndSky(Canvas canvas, Size size) {
+    final skyHeight = _canvasHeight * .66;
+    _paint.color = skyColor;
+    canvas.drawRect(
+      Rect.fromPoints(Offset.zero, Offset(size.width, skyHeight)),
+      _paint,
+    );
+    _paint.color = waterColor;
+    canvas.drawRect(
+      Rect.fromPoints(Offset(0, skyHeight), Offset(size.width, _canvasHeight)),
+      _paint,
+    );
+  }
 
-    for (int i = 0; i < _numPetals; i++) {
-      theta = theta + 2 * pi / _numPetals;
-      Offset startPoint = Offset(_flowerInnerRadius * cos(theta), _flowerInnerRadius * sin(theta)) + _center;
-      path.moveTo(startPoint.dx, startPoint.dy);
-      Offset endPt = Offset(
-            _flowerInnerRadius * cos(theta + innerWidthSweep),
-            _flowerInnerRadius * sin(theta + innerWidthSweep),
-          ) +
-          _center;
-      Offset ctrlPt1 = Offset(
-            (_flowerInnerRadius + _petalCtrlPtHeight) * cos(theta - outerWidthDelta),
-            (_flowerInnerRadius + _petalCtrlPtHeight) * sin(theta - outerWidthDelta),
-          ) +
-          _center;
-      Offset ctrlPt2 = Offset(
-            (_flowerInnerRadius + _petalCtrlPtHeight) * cos(theta + innerWidthSweep + outerWidthDelta),
-            (_flowerInnerRadius + _petalCtrlPtHeight) * sin(theta + innerWidthSweep + outerWidthDelta),
-          ) +
-          _center;
-      path.cubicTo(ctrlPt1.dx, ctrlPt1.dy, ctrlPt2.dx, ctrlPt2.dy, endPt.dx, endPt.dy);
+  void _drawMountains(Canvas canvas, Size size, bool isMountain) {
+    double reflectionHeightDelta;
+    int upOrDown;
+    final skyHeight = _canvasHeight * .66;
+    if (isMountain) {
+      _paint.color = Colors.white;
+      reflectionHeightDelta = 0;
+      upOrDown = 1;
+    } else {
+      _paint.color = Colors.black12;
+      reflectionHeightDelta = skyHeight * 2;
+      upOrDown = -1;
     }
 
-    path.addPath(
-        _insidePath(
-          _center,
-        ),
-        Offset.zero);
-    return path;
-  }
+    final leftMtLeftPt = Offset(0, reflectionHeightDelta + upOrDown * skyHeight);
+    final leftMtPeakPt = Offset(size.width / 4, reflectionHeightDelta + upOrDown * _canvasHeight * .5);
+    final leftMtRtPt = Offset(size.width / 2, reflectionHeightDelta + upOrDown * _canvasHeight * .58);
+    final rtMtPeakPt = Offset(3 * size.width / 4, reflectionHeightDelta + upOrDown * _canvasHeight * .4);
+    final rtMtRtPt = Offset(size.width, reflectionHeightDelta + upOrDown * skyHeight);
 
-  double _innerSweep(int numPetals) => 2 * pi / numPetals;
+    final mtPath = Path();
+    mtPath.moveTo(leftMtLeftPt.dx, leftMtLeftPt.dy);
+    mtPath.lineTo(leftMtPeakPt.dx, leftMtPeakPt.dy);
+    mtPath.lineTo(leftMtRtPt.dx, leftMtRtPt.dy);
+    mtPath.lineTo(rtMtPeakPt.dx, rtMtPeakPt.dy);
+    mtPath.lineTo(rtMtRtPt.dx, rtMtRtPt.dy);
 
-  double _outerWidthDelta(int numPetals) => pi / (numPetals * 8);
-
-  Path _insidePath(
-    Offset center,
-  ) {
-    Path path = Path();
-    double theta = 0;
-    for (int i = 0; i < _numPetals; i++) {
-      theta = theta + 2 * pi / _numPetals;
-      double innerWidthSweep = _innerSweep(_numPetals);
-      final midTheta = theta + innerWidthSweep / 2;
-      final midLineLength = _petalCtrlPtHeight / 4;
-
-      final innerMidPt = Offset(
-            _flowerInnerRadius * cos(midTheta),
-            _flowerInnerRadius * sin(midTheta),
-          ) +
-          center;
-      final outerMidPt = Offset(
-            (_flowerInnerRadius + midLineLength / 2) * cos(midTheta),
-            (_flowerInnerRadius + midLineLength / 2) * sin(midTheta),
-          ) +
-          center;
-      path.moveTo(
-        innerMidPt.dx,
-        innerMidPt.dy,
-      );
-      path.lineTo(
-        outerMidPt.dx,
-        outerMidPt.dy,
-      );
-    }
-    path.addOval(
-      Rect.fromCircle(
-        center: center,
-        radius: _flowerInnerRadius,
-      ),
-    );
-    return path;
-  }
-
-  Path _stemPath(Canvas canvas) {
-    Path path = Path();
-    final startPt = Offset(_center.dx - _petalCtrlPtHeight / 4, _center.dy);
-    path.moveTo(startPt.dx, startPt.dy);
-    final endPoint = Offset(midPointX, _canvasHeight);
-    final dy = (_canvasHeight - _center.dy) / 3;
-    final dx = 50.0;
-    final ctrlPt1 = startPt + Offset(2 * dx, dy);
-    final ctrlPt2 = startPt + Offset(-dx, 2 * dy);
-    path.cubicTo(
-      ctrlPt1.dx,
-      ctrlPt1.dy,
-      ctrlPt2.dx,
-      ctrlPt2.dy,
-      endPoint.dx,
-      endPoint.dy,
-    );
-    return path;
-  }
-
-  void _drawFlower({
-    required Canvas canvas,
-    required Path flowerPath,
-  }) {
-    _paint.color = stemColor;
-    _paint.style = PaintingStyle.stroke;
-    _paint.strokeWidth = 6;
-    canvas.drawPath(_stemPath(canvas), _paint);
-    _paint.style = PaintingStyle.fill;
-    _paint.color = petalFillColor;
-    canvas.drawPath(flowerPath, _paint);
-    _paint.color = petalStrokeColor;
-    _paint.style = PaintingStyle.stroke;
-    _paint.strokeWidth = 3;
-    _paint.strokeCap = StrokeCap.round;
-    canvas.drawPath(flowerPath, _paint);
+    canvas.drawPath(mtPath, _paint);
   }
 
   void _drawSun(Canvas canvas) {
-    final sunCenter = _center - Offset(3 * midPointX / 4, _center.dy / 2);
+    final sunCenter = _center - Offset(3 * _center.dx / 4, _center.dy / 2);
     final innerRadius = 40.0;
     final outerRadius = innerRadius + innerRadius / 3;
     final sunColor = Colors.yellowAccent;
@@ -197,7 +110,7 @@ class SceneryPainter extends CustomPainter {
   }
 
   void _drawMoon(Canvas canvas) {
-    final moonCenter = _center + Offset(3 * midPointX / 4, -_center.dy / 2);
+    final moonCenter = _center + Offset(3 * _center.dx / 4, -_center.dy / 2);
     final outerRadius = 40.0;
     final innerRadius = outerRadius * .75;
     final glowRadius = outerRadius + outerRadius / 3;
@@ -216,7 +129,7 @@ class SceneryPainter extends CustomPainter {
         moonColor.withOpacity(.1),
       ],
     ).createShader(Rect.fromCircle(
-      center: moonCenter, // - Offset(3 * innerRadius / 4, 0),
+      center: moonCenter,
       radius: glowRadius,
     ));
     canvas.drawCircle(moonCenter, glowRadius, paintWithShader);

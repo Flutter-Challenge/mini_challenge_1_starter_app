@@ -20,9 +20,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Theming Mini Challenge',
       theme: Provider.of<MyTheme>(context).currentThemeData,
-      /* ThemeData(
-        textTheme: TextTheme(), //todo(you) fill this TextTheme() in to make the text look nicer
-      ),*/
       home: MyHomePage(title: 'Theming Challenge'),
     );
   }

@@ -25,23 +25,17 @@ class SceneryTheme extends InheritedTheme {
 class SceneryThemeData {
   SceneryThemeData({
     required this.skyFillColor,
-    required this.groundFillColor,
-    required this.petalFillColor,
-    required this.petalStrokeColor,
-    required this.stemStrokeColor,
+    required this.mountainFillColor,
+    required this.waterFillColor,
     required this.drawMoon,
     required this.drawSun,
   });
 
   final Color skyFillColor;
 
-  final Color groundFillColor;
+  final Color mountainFillColor;
 
-  final Color petalFillColor;
-
-  final Color petalStrokeColor;
-
-  final Color stemStrokeColor;
+  final Color waterFillColor;
 
   final bool drawSun;
 
