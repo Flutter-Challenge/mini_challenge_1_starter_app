@@ -72,7 +72,7 @@ class SceneryPainter extends CustomPainter {
     int upOrDown;
     final skyHeight = _canvasHeight * .66;
     if (isMountain) {
-      _paint.color = Colors.white;
+      _paint.color = mountainColor;
       reflectionHeightDelta = 0;
       upOrDown = 1;
     } else {

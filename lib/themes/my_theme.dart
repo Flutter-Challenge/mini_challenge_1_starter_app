@@ -12,7 +12,7 @@ class MyTheme with ChangeNotifier {
     return _themeType;
   }
 
-  // todo(you) fill this in and make the different text styles visible in TextTheme() look better
+  // todo(you) fill this in and make the different text styles visible in the text area look better
   ThemeData get currentThemeData {
     switch (_themeType) {
       case ThemeType.Light:
