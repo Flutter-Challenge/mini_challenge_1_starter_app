@@ -19,8 +19,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Theming Mini Challenge',
+      debugShowCheckedModeBanner: false,
       theme: Provider.of<MyTheme>(context).currentThemeData,
-      home: MyHomePage(title: 'Theming Challenge'),
+      home: MyHomePage(title: 'Theming Mini Challenge'),
     );
   }
 }

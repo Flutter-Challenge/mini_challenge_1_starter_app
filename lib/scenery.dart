@@ -11,7 +11,7 @@ class Scenery extends StatefulWidget {
 }
 
 class _SceneryState extends State<Scenery> {
-  // You can adjust this, if you like, but it should not toggle with light/dark mode.
+  // You can adjust this, as needed, but it should not change with the theme.
   final _textAreaHeight = 250.0;
 
   @override
@@ -29,46 +29,49 @@ class _SceneryState extends State<Scenery> {
               drawSun: CustomWidgetThemes.of(context).sceneryThemeData!.drawSun,
               drawMoon: CustomWidgetThemes.of(context).sceneryThemeData!.drawMoon,
             ),
-            child: Container(
-              color: CustomWidgetThemes.of(context).sceneryThemeData!.mountainFillColor,
-            ),
+            child: Container(),
           ),
+          //todo(you) - Can you find a way to toggle this text area color according to the theme?
           Positioned(
             bottom: 0,
             child: Container(
               height: _textAreaHeight,
               width: constraints.maxWidth,
-              color: _textBackgroundColor,
               child: const SomeText(),
             ),
           ),
           Positioned(
             bottom: 0,
             right: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                width: 200,
-                height: 200,
-                child: Column(
+            child: Container(
+              width: constraints.maxWidth,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
                   children: <Widget>[
-                    RadioListTile<ThemeType>(
-                      title: const Text('Light Theme'),
-                      groupValue: myTheme.currentTheme,
-                      value: ThemeType.Light,
-                      onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Light),
+                    Expanded(
+                      child: RadioListTile<ThemeType>(
+                        title: const Text('Light Theme'),
+                        groupValue: myTheme.currentTheme,
+                        value: ThemeType.Light,
+                        onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Light),
+                      ),
                     ),
-                    RadioListTile<ThemeType>(
-                      title: const Text('Dark Theme'),
-                      groupValue: myTheme.currentTheme,
-                      value: ThemeType.Dark,
-                      onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Dark),
+                    Expanded(
+                      child: RadioListTile<ThemeType>(
+                        title: const Text('Dark Theme'),
+                        groupValue: myTheme.currentTheme,
+                        value: ThemeType.Dark,
+                        onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Dark),
+                      ),
                     ),
-                    RadioListTile<ThemeType>(
-                      title: const Text('Pastel Theme'),
-                      groupValue: myTheme.currentTheme,
-                      value: ThemeType.Pastel,
-                      onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Pastel),
+                    Expanded(
+                      child: RadioListTile<ThemeType>(
+                        title: const Text('Pastel Theme'),
+                        groupValue: myTheme.currentTheme,
+                        value: ThemeType.Pastel,
+                        onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Pastel),
+                      ),
                     ),
                   ],
                 ),
@@ -79,9 +82,6 @@ class _SceneryState extends State<Scenery> {
       ),
     );
   }
-
-  //todo(you) - Can you find a way to toggle this value with light mode and dark mode.
-  final _textBackgroundColor = Colors.blueGrey.shade50;
 }
 
 class SomeText extends StatelessWidget {
