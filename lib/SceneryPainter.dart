@@ -20,20 +20,26 @@ class SceneryPainter extends CustomPainter {
   final bool drawMoon;
 
   final _paint = Paint();
-  final _flowerCenterY = 170.0;
 
   Offset _center = Offset.zero;
   double _canvasHeight = 0;
 
   @override
   void paint(Canvas canvas, Size size) {
-    _center = Offset(size.width / 2, _flowerCenterY);
     _canvasHeight = size.height - textHeight;
+    _center = Offset(size.width / 2, _canvasHeight / 2);
 
     _drawSeaAndSky(canvas, size);
-    _drawMountains(canvas, size, true);
-    _drawMountains(canvas, size, false);
-    //_drawMountainReflection(canvas, size);
+    _drawMountains(
+      canvas: canvas,
+      size: size,
+      isMountain: true,
+    );
+    _drawMountains(
+      canvas: canvas,
+      size: size,
+      isMountain: false,
+    );
 
     if (drawSun) {
       _drawSun(canvas);
@@ -57,7 +63,11 @@ class SceneryPainter extends CustomPainter {
     );
   }
 
-  void _drawMountains(Canvas canvas, Size size, bool isMountain) {
+  void _drawMountains({
+    required Canvas canvas,
+    required Size size,
+    required bool isMountain,
+  }) {
     double reflectionHeightDelta;
     int upOrDown;
     final skyHeight = _canvasHeight * .66;
