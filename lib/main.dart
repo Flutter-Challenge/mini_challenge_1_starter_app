@@ -17,12 +17,17 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Theming Mini Challenge',
-      debugShowCheckedModeBanner: false,
-      theme: Provider.of<MyTheme>(context).currentThemeData,
-      home: MyHomePage(title: 'Theming Mini Challenge'),
-    );
+    return Builder(builder: (BuildContext context) {
+      final themeProvider = Provider.of<MyTheme>(context);
+      return MaterialApp(
+        title: 'Theming Mini Challenge',
+        debugShowCheckedModeBanner: false,
+        themeMode: themeProvider.themeMode,
+        theme: themeProvider.currentThemeData,
+        darkTheme: themeProvider.currentThemeData,
+        home: MyHomePage(title: 'Theming Mini Challenge'),
+      );
+    });
   }
 }
 
