@@ -31,7 +31,7 @@ class _SceneryState extends State<Scenery> {
             ),
             child: Container(),
           ),
-          //todo(you) - Can you find a way to toggle this text area color according to the theme?
+          //todo(you) - Can you find a way to toggle this text area background color according to the theme?
           Positioned(
             bottom: 0,
             child: Container(
@@ -48,30 +48,24 @@ class _SceneryState extends State<Scenery> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Expanded(
-                      //todo(you) Which textStyle is used for the RadioListTile title text? Can you put it in your theme?
-                      child: RadioListTile<ThemeType>(
-                        title: const Text('Light Theme'),
-                        groupValue: myTheme.currentTheme,
-                        value: ThemeType.Light,
-                        onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Light),
+                      child: RadioListTile<ThemeMode>(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                        title: const Text('Light'),
+                        groupValue: myTheme.themeMode,
+                        value: ThemeMode.light,
+                        onChanged: (ThemeMode? mode) => myTheme.setThemeMode(ThemeMode.light),
                       ),
                     ),
                     Expanded(
-                      child: RadioListTile<ThemeType>(
-                        title: const Text('Dark Theme'),
-                        groupValue: myTheme.currentTheme,
-                        value: ThemeType.Dark,
-                        onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Dark),
-                      ),
-                    ),
-                    Expanded(
-                      child: RadioListTile<ThemeType>(
-                        title: const Text('Pastel Theme'),
-                        groupValue: myTheme.currentTheme,
-                        value: ThemeType.Pastel,
-                        onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Pastel),
+                      child: RadioListTile<ThemeMode>(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                        title: const Text('Dark'),
+                        groupValue: myTheme.themeMode,
+                        value: ThemeMode.dark,
+                        onChanged: (ThemeMode? mode) => myTheme.setThemeMode(ThemeMode.dark),
                       ),
                     ),
                   ],

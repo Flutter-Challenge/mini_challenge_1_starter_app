@@ -1,32 +1,20 @@
 import 'package:flutter/material.dart';
 
 class MyTheme with ChangeNotifier {
-  ThemeType _themeType = ThemeType.Light;
+  var _themeMode = ThemeMode.light;
+  ThemeMode get themeMode => _themeMode;
 
-  setThemeType(ThemeType newTheme) {
-    _themeType = newTheme;
+  void setThemeMode(themeMode) {
+    _themeMode = themeMode;
     notifyListeners();
   }
 
-  ThemeType get currentTheme {
-    return _themeType;
-  }
-
-  // todo(you) fill this in and make the different text styles visible in the text area look better
+  // todo(you) fill this in and make the different text styles visible in the text area look better in both light and dark mode?
   ThemeData get currentThemeData {
-    switch (_themeType) {
-      case ThemeType.Light:
-        return ThemeData();
-      case ThemeType.Dark:
-        return ThemeData();
-      case ThemeType.Pastel:
-        return ThemeData();
+    if (_themeMode == ThemeMode.light) {
+      return ThemeData(brightness: Brightness.light, primaryColor: Colors.blue);
+    } else {
+      return ThemeData(brightness: Brightness.dark, primaryColor: Colors.green);
     }
   }
-}
-
-enum ThemeType {
-  Light,
-  Dark,
-  Pastel,
 }
