@@ -50,9 +50,10 @@ class _SceneryState extends State<Scenery> {
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      //todo(you) Which textStyle is used for the RadioListTile title text? Can you put it in your theme?
+                      //todo(you) Can you put the RadioListTile contentPadding in a theme?
                       child: RadioListTile<ThemeType>(
-                        title: const Text('Light Theme'),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                        title: const Text('Light'),
                         groupValue: myTheme.currentTheme,
                         value: ThemeType.Light,
                         onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Light),
@@ -60,7 +61,8 @@ class _SceneryState extends State<Scenery> {
                     ),
                     Expanded(
                       child: RadioListTile<ThemeType>(
-                        title: const Text('Dark Theme'),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                        title: const Text('Dark'),
                         groupValue: myTheme.currentTheme,
                         value: ThemeType.Dark,
                         onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Dark),
@@ -68,7 +70,8 @@ class _SceneryState extends State<Scenery> {
                     ),
                     Expanded(
                       child: RadioListTile<ThemeType>(
-                        title: const Text('Pastel Theme'),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                        title: const Text('Pastel'),
                         groupValue: myTheme.currentTheme,
                         value: ThemeType.Pastel,
                         onChanged: (ThemeType? type) => myTheme.setThemeType(ThemeType.Pastel),
