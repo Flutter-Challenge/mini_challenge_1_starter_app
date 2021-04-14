@@ -2,9 +2,26 @@ import 'package:flutter/material.dart';
 
 class MyTheme with ChangeNotifier {
   var _themeMode = ThemeMode.light;
+
   ThemeMode get themeMode => _themeMode;
 
-  void setThemeMode(themeMode) {
+  MyTheme() {
+    final window = WidgetsBinding.instance?.window;
+    window?.onPlatformBrightnessChanged = () {
+      // This callback gets invoked every time brightness changes
+      final brightness = window.platformBrightness;
+
+      switch (brightness) {
+        case Brightness.dark:
+          setThemeMode(ThemeMode.dark);
+          break;
+        case Brightness.light:
+          setThemeMode(ThemeMode.light);
+      }
+    };
+  }
+
+  void setThemeMode(ThemeMode themeMode) {
     _themeMode = themeMode;
     notifyListeners();
   }
