@@ -1,6 +1,6 @@
-## Welcome to Flutter Challenges!
+## Welcome to Flutter Challenge!
 
-You are participating in our very first Challenge. We decided to start out small, with a Mini Challenge. This should not take you more than 1-2 hours to complete, and you have 4 days to submit it. The submission deadline is April 15th 23:59:59 UTC.
+You are participating in our very first Challenge. We decided to start out small, with a Mini Challenge. This should not take you more than 1-2 hours to complete, and you have 4 days to submit it. The submission deadline is April 16th 23:59:59 UTC.
 
 This Mini Challenge is a bit special since it is our very first one. 
 
@@ -8,7 +8,7 @@ We envision a normal Challenge going like this: we would use community votes to 
 
 However, since this is our very first Challenge, it is a bit special. So, Real Humans will evaluate each submission and determine the winners. Next, we are partnering with the Flutteristas for this launch. So, winners will be declared at the first-ever Flutteristas Conference on April 17th!
 
-In addition to the glory, the winners of our inaugural Challenge will receive some awesome Real Prizes. This is thanks to the AMAZING, GENEROUS Flutteristas Conference sponsors. On the table is a Dash, 2 copies of The Complete Flutter Reference, and 5 copies of Andrea Bizzotto's Flutter and Firebase course [add links]. You can read more details about this [here](https://flutteristas.org/activities-and-prizes/).
+In addition to the glory, the winners of our inaugural Challenge will receive some awesome Real Prizes. This is thanks to the AMAZING, GENEROUS Flutteristas Conference sponsors. On the table is a Dash, 2 copies of the [Complete Flutter Reference](https://fluttercompletereference.com/), and 5 copies of Andrea Bizzotto's [Flutter and Firebase](https://www.udemy.com/course/flutter-firebase-build-a-complete-app-for-ios-android/) course. You can read more details about this [here](https://flutteristas.org/activities-and-prizes/).
 
 We can't promise Real Prizes normally, unless more sponsors contact us [(ahem)](mailto:flutter.challenge.team@gmail.com). But, we sincerely hope you will learn something useful and new each time you participate.
 

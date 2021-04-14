@@ -1,37 +1,45 @@
 import 'package:flutter/material.dart';
 
 class MyTheme with ChangeNotifier {
-  var _themeMode = ThemeMode.light;
+  var _themeType = ThemeType.Light;
 
-  ThemeMode get themeMode => _themeMode;
+  ThemeType get themeType => _themeType;
 
   MyTheme() {
+    /// If the user changes the theme in their device's settings, this is picked up on as well:
     final window = WidgetsBinding.instance?.window;
     window?.onPlatformBrightnessChanged = () {
-      // This callback gets invoked every time brightness changes
       final brightness = window.platformBrightness;
 
       switch (brightness) {
         case Brightness.dark:
-          setThemeMode(ThemeMode.dark);
+          setThemeType(ThemeType.Dark);
           break;
         case Brightness.light:
-          setThemeMode(ThemeMode.light);
+          setThemeType(ThemeType.Light);
       }
     };
   }
-
-  void setThemeMode(ThemeMode themeMode) {
-    _themeMode = themeMode;
+  void setThemeType(ThemeType themeType) {
+    _themeType = themeType;
     notifyListeners();
   }
 
-  // todo(you) fill this in and make the different text styles visible in the text area look better in both light and dark mode?
+  // todo(you) fill this in and make the different text styles visible in the text area look better in both light, dark and other mode?
   ThemeData get currentThemeData {
-    if (_themeMode == ThemeMode.light) {
-      return ThemeData(brightness: Brightness.light, primaryColor: Colors.blue);
-    } else {
-      return ThemeData(brightness: Brightness.dark, primaryColor: Colors.green);
+    switch (themeType) {
+      case ThemeType.Light:
+        return ThemeData();
+      case ThemeType.Dark:
+        return ThemeData();
+      case ThemeType.Other:
+        return ThemeData();
     }
   }
+}
+
+enum ThemeType {
+  Light,
+  Dark,
+  Other,
 }

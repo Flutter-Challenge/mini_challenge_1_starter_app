@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'SceneryPainter.dart';
+import 'scenery_painter.dart';
 import 'themes/custom_themes.dart';
 import 'themes/my_theme.dart';
 
@@ -51,21 +51,30 @@ class _SceneryState extends State<Scenery> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Expanded(
-                      child: RadioListTile<ThemeMode>(
+                      child: RadioListTile<ThemeType>(
                         contentPadding: EdgeInsets.symmetric(horizontal: 4),
                         title: const Text('Light'),
-                        groupValue: myTheme.themeMode,
-                        value: ThemeMode.light,
-                        onChanged: (ThemeMode? mode) => myTheme.setThemeMode(ThemeMode.light),
+                        groupValue: myTheme.themeType,
+                        value: ThemeType.Light,
+                        onChanged: (ThemeType? mode) => myTheme.setThemeType(ThemeType.Light),
                       ),
                     ),
                     Expanded(
-                      child: RadioListTile<ThemeMode>(
+                      child: RadioListTile<ThemeType>(
                         contentPadding: EdgeInsets.symmetric(horizontal: 4),
                         title: const Text('Dark'),
-                        groupValue: myTheme.themeMode,
-                        value: ThemeMode.dark,
-                        onChanged: (ThemeMode? mode) => myTheme.setThemeMode(ThemeMode.dark),
+                        groupValue: myTheme.themeType,
+                        value: ThemeType.Dark,
+                        onChanged: (ThemeType? mode) => myTheme.setThemeType(ThemeType.Dark),
+                      ),
+                    ),
+                    Expanded(
+                      child: RadioListTile<ThemeType>(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                        title: const Text('Other'),
+                        groupValue: myTheme.themeType,
+                        value: ThemeType.Other,
+                        onChanged: (ThemeType? mode) => myTheme.setThemeType(ThemeType.Other),
                       ),
                     ),
                   ],

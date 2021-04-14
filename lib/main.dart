@@ -22,9 +22,7 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         title: 'Theming Mini Challenge',
         debugShowCheckedModeBanner: false,
-        themeMode: themeProvider.themeMode,
         theme: themeProvider.currentThemeData,
-        darkTheme: themeProvider.currentThemeData,
         home: MyHomePage(title: 'Theming Mini Challenge'),
       );
     });
