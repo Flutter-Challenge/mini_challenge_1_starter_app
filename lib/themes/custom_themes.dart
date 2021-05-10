@@ -12,7 +12,7 @@ class CustomWidgetThemes {
   SceneryThemeData? sceneryThemeData;
 
   // todo(you) These colors are dreary! Modify this so the picture has different values for light and dark modes.
-  //  If you are feeling ambitions, get creative and make a third theme (or a fourth!)
+  //  If you are feeling ambitious, get creative and make a third theme (or a fourth!)
   CustomWidgetThemes._(BuildContext context) {
     final themeType = Provider.of<MyTheme>(context).themeType;
 

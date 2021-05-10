@@ -93,7 +93,7 @@ class SomeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
       children: [
         Text(
           'Flaiku',

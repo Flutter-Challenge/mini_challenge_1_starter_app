@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// [MyTheme] is given to the provider at the root of the widget tree. So changes here are provided to the whole app.
 class MyTheme with ChangeNotifier {
   var _themeType = ThemeType.Light;
 

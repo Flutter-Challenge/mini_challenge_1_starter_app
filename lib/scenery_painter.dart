@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+/// [SceneryPainter] draws the image for which you are setting a custom theme.
 class SceneryPainter extends CustomPainter {
   SceneryPainter({
     required this.waterColor,
