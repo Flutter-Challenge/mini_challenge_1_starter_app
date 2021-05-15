@@ -31,3 +31,15 @@ Your Challenge is to make this screen more interesting with custom themeing. A c
 - Not required, but encouraged: theming, as above, for the third theme as well. 
 
 That's it! Good luck :)  
+
+## App Screenshots!
+
+<img src="https://user-images.githubusercontent.com/53489549/114847048-e5ef9280-9dfa-11eb-95c0-acc384849334.png" width="300">  <img src="https://user-images.githubusercontent.com/53489549/114847081-ee47cd80-9dfa-11eb-8d02-03a417a9cb35.png" width="300">  <img src="https://user-images.githubusercontent.com/53489549/114847086-f142be00-9dfa-11eb-9bd8-21f37b9eed95.png" width="300">
+
+# App In Action!
+<img src="https://user-images.githubusercontent.com/53489549/114849456-631c0700-9dfd-11eb-990c-3efba0aca89d.gif" width="300">
+
+
+
+
+

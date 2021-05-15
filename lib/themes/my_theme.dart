@@ -30,11 +30,40 @@ class MyTheme with ChangeNotifier {
   ThemeData get currentThemeData {
     switch (themeType) {
       case ThemeType.Light:
-        return ThemeData();
+        return ThemeData(
+            primaryColor: Colors.lime,
+            primaryColorLight: Color(0xff96cdf0),
+            accentColor: Color(0xff182628),
+            backgroundColor: Color(0xff3b945e),
+            textTheme: TextTheme(
+                headline3: TextStyle(
+                    color: Color(0xff0E1132), fontWeight: FontWeight.bold),
+                subtitle1: TextStyle(
+                    color: Color(0xff0E1132), fontWeight: FontWeight.w600),
+                bodyText1: TextStyle(color: Color(0xff04396C))));
       case ThemeType.Dark:
-        return ThemeData();
+        return ThemeData(
+            primaryColor: Color(0xff10282d),
+            primaryColorLight: Color(0xff4E4E50),
+            accentColor: Color(0xffe1f1f4),
+            backgroundColor: Color(0xff182628),
+            textTheme: TextTheme(
+                headline3: TextStyle(
+                    color: Color(0xffffffff), fontWeight: FontWeight.bold),
+                subtitle1: TextStyle(
+                    color: Color(0xffffffff), fontWeight: FontWeight.w600),
+                bodyText1: TextStyle(color: Color(0xebEDF5E0))));
       case ThemeType.Other:
-        return ThemeData();
+        return ThemeData(
+            primaryColor: Colors.pink[100],
+            primaryColorLight: Colors.deepPurpleAccent[100],
+            accentColor: Color(0xff2a1b3d),
+            textTheme: TextTheme(
+                headline3: TextStyle(
+                    color: Color(0xff25274D), fontWeight: FontWeight.bold),
+                subtitle1: TextStyle(
+                    color: Color(0xff25274D), fontWeight: FontWeight.w600),
+                bodyText1: TextStyle(color: Color(0xff24315E))));
     }
   }
 }
